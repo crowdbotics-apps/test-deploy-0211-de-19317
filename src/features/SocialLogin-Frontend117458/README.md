@@ -45,7 +45,7 @@ const store = createStore(
   combineReducers({
     apiReducer: apiReducer,
     customReducer: customReducer,
-    socialLoginReducer: socialLoginReducer,
+    socialLogin: socialLoginReducer,
   }),
   composeEnhancers(applyMiddleware(...middlewares))
 );

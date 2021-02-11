@@ -4,6 +4,7 @@ import {createDrawerNavigator} from 'react-navigation-drawer';
 
 import SplashScreen from "../features/SplashScreen";
 import SideMenu from './sideMenu';
+import SocialLogin from '../features/SocialLogin-Frontend117458/navigator';
 //@BlueprintImportInsertion
 
 /**
@@ -11,7 +12,7 @@ import SideMenu from './sideMenu';
  */
 
 const AppNavigator = {
-
+    SocialLogin: { screen: SocialLogin },
     //@BlueprintNavigationInsertion
 
     /** new navigators can be added here */

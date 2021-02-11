@@ -4,7 +4,7 @@ This module contains all needed resources and information to setup Social Login 
 ## Extra installation steps
 After adding this module to your project, you need to include the facebook authentication third party app in your `settings.py` file. To do that, open your project's settings.py file - it should be in the path `/<your_repo_name>/backend/<your_repo_name>/settings.py`, where <your_repo_name> is the name of your project's repository. For example, if my repository name is `social_login_1234`, my file should be located at `social_login_1234/backend/social_login_1234/settings.py`.
 
-Once the file is opened, locate in the code a declaration for `THIRD_PARTY_APPS` and include `'allauth.socialaccount.providers.facebook',` at the end. Your app might already have `'allauth.socialaccount.providers.google'` added there, so you should verify; but if it is not there, then add it as well. Your code section should look roughly like this:
+Once the file is opened, locate in the code a declaration for `THIRD_PARTY_APPS` and include `'allauth.socialaccount.providers.facebook',` and `'allauth.socialaccount.providers.apple',` at the end. Your app should ght already have `'allauth.socialaccount.providers.google'` added there, so you should verify; but if it is not there, then add it as well. Your code section should look roughly like this:
 
 ```py
 THIRD_PARTY_APPS = [
@@ -16,7 +16,8 @@ THIRD_PARTY_APPS = [
 
     # More apps added before here...
 
-    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.facebook', # add this line here
+    'allauth.socialaccount.providers.apple', # add this other line
 ]
 ```
 
