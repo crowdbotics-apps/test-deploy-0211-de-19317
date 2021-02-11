@@ -6,8 +6,8 @@ import customRootSaga from "./custom/sagas"
 import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 
-import socialLoginSaga from '../features/<module_directory>/auth/sagas';
-import socialLoginReducer from '../features/<module_directory>/auth/reducers';
+import socialLoginSaga from '../features/SocialLogin-Frontend117458/auth/sagas';
+import socialLoginReducer from '../features/SocialLogin-Frontend117458/auth/reducers';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -29,5 +29,6 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 sagaMiddleware.run(customRootSaga);
+sagaMiddleware.run(socialLoginSaga);
 
 export { store };

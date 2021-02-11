@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">test_deploy_0211_de_19317</string>
+    <string name="facebook_app_id">708107706741764</string>
+    <string name="fb_login_protocol_scheme">fb708107706741764</string>
+    <string name="server_client_id">39330537799-vedijchi9t7r94ds560bjp1l15ffho9k.apps.googleusercontent.com</string>
 </resources>
