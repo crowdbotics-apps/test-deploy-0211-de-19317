@@ -71,6 +71,7 @@ THIRD_PARTY_APPS = [
     # end fcm_django push notifications
 
     'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.apple',
 
 ]
 INSTALLED_APPS += LOCAL_APPS + THIRD_PARTY_APPS

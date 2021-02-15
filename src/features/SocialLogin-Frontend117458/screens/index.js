@@ -105,7 +105,7 @@ class SignUpComponent extends Component {
       const error =
         api.error.code == 400
           ? 'This email is already registered.'
-          : requestError.message;
+          : api.message;
 
       Alert.alert('Error', error);
       this.setState({

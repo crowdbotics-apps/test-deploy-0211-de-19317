@@ -140,6 +140,19 @@ At this step, you need to generate the key hash for your app. Consult the offici
 - _6. Edit Your Resources and Android Manifest_
 This step will tell you which files in your project to edit. `/app/res/values/strings.xml` is equivalent to `<your_project_name>/android/app/src/main/res/values/strings.xml`
 
+Update your Android manifest file (`/android/app/src/main/AndroidManifest.xml`) and add `<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>` code to the metadata section. It should look like this:
+
+```xml
+<meta-data
+  android:name="com.google.android.geo.API_KEY"
+  android:value="XXXXXXX"/>  
+  
+<!-- Add this line below:  -->
+<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+
+
+```
+
 
 After everything, open the file `<your_project_name>/android/app/build.gradle` look for `defaultConfig` object and add `multiDexEnabled true`. It will look something like this:
 

@@ -71,9 +71,11 @@ function* apiFacebookConnectWorker(action) {
     ]);
     if (!fb_result.isCancelled) {
       const data = yield AccessToken.getCurrentAccessToken();
+      console.log(data)
       const result = yield call(authServices.apiFacebookConnect, {
         access_token: data.accessToken,
       });
+      console.log(result)
       yield put(actions.apiFacebookConnectSuccess(result, action));
     } else {
       yield put(
