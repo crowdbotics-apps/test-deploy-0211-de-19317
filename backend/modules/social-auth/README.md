@@ -65,7 +65,8 @@ Your backend is now ready to accept facebook login. Redeploy your application so
 Similarly to Facebook, Google login should ideally be configured in the Google account that is going to manage everything related to this project (usually, the project owner). But for development purposes, it can temporarily be configured by anyone.
 
 1. Configure your Google Cloud account to access the [console](https://console.developers.google.com/), and to start a quick setup of an API project, visit https://developers.google.com/identity/sign-in/android/start#configure-a-google-api-project and click on `Configure a Project`. 
-2. There, you will choose to create a new project (or your an existing one, if desired). Follow the instructions, filling out product name, choosing `Web Server` as your OAuth client and pasting your app's url as the Authorized redirect URIs (for example, this tutorial app link is `https://social-login-1234.botics.co/`). 
+2. There, you will choose to create a new project (or your an existing one, if desired). Follow the instructions, filling out product name, choosing `Web Server` as your OAuth client and pasting your app's url as the Authorized redirect URIs and your app's url appended with `/accounts/google/login/callback/`.
+For example, this tutorial app link is `https://social-login-1234.botics.co/` so you should provide both `https://social-login-1234.botics.co/` and `https://social-login-1234.botics.co/accounts/google/login/callback/`.
 Finish up and `Download Client Configuration` (you will need this information later).
 
 3. Navigate to Crowdbotics dashboard for your app and access your app's admin panel to add the Google API information. To do so, follow steps 6 and 7 from the Facebook configuration above, and input the form values as follows:
@@ -75,3 +76,8 @@ Finish up and `Download Client Configuration` (you will need this information la
 - Client id: Your `Client ID` (`client_id`) from Google's credentials configuration
 - Secret Key: The `Client Secret` (`client_secret`) Google's credentials configuration
 - Sites: your website url, just move it to the right panel. 
+
+## Configuring Apple
+Similarly to Facebook, Apple login should ideally be configured in the Google account that is going to manage everything related to this project (usually, the project owner). But for development purposes, it can temporarily be configured by anyone.
+
+TODO
