@@ -71,11 +71,9 @@ function* apiFacebookConnectWorker(action) {
     ]);
     if (!fb_result.isCancelled) {
       const data = yield AccessToken.getCurrentAccessToken();
-      console.log(data)
       const result = yield call(authServices.apiFacebookConnect, {
         access_token: data.accessToken,
       });
-      console.log(result)
       yield put(actions.apiFacebookConnectSuccess(result, action));
     } else {
       yield put(
@@ -104,9 +102,10 @@ function* apiGoogleConnectWorker(action) {
   });
   try {
     yield GoogleSignin.hasPlayServices();
-    const userInfo = yield GoogleSignin.signIn();
+    yield GoogleSignin.signIn();
+    const tokens = yield GoogleSignin.getTokens();
     const result = yield call(authServices.apiGoogleConnect, {
-      access_token: userInfo.serverAuthCode,
+      access_token: tokens.accessToken,
     });
     yield put(actions.apiGoogleConnectSuccess(result, action));
   } catch (err) {
