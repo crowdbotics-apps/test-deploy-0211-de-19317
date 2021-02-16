@@ -19,7 +19,6 @@ import {
   apiGoogleConnect,
 } from '../auth/actions';
 import reducer from '../auth/reducers';
-import { API_LOGIN_FAILED, API_SIGNUP_FAILED } from '../auth/constants';
 import { styles, buttonStyles, textInputStyles, Color } from './styles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
@@ -101,11 +100,11 @@ class SignUpComponent extends Component {
 
   componentDidUpdate(prevProps) {
     const { api, user } = this.props;
-    if (prevProps.api.isLoading && api.error?.type === API_SIGNUP_FAILED) {
+    if (prevProps.api.isLoading && !api.success) {
       const error =
         api.error.code == 400
           ? 'This email is already registered.'
-          : api.message;
+          : api.error.message;
 
       Alert.alert('Error', error);
       this.setState({
@@ -122,6 +121,8 @@ class SignUpComponent extends Component {
 
   onSignupPress = async () => {
     const { email, password, confirmPassword } = this.state;
+    this.setState({ emailError: '' })
+    this.setState({ passwordError: '' })
     if (validateEmail.test(email)) {
       if (password != '') {
         if (password == confirmPassword) {
@@ -211,7 +212,7 @@ class SignInComponent extends Component {
 
   componentDidUpdate(prevProps) {
     const { api, token } = this.props;
-    if (prevProps.api.isLoading && api.error?.type === API_LOGIN_FAILED) {
+    if (prevProps.api.isLoading && !api.success) {
       Alert.alert('Login Error', api.error.message);
     }
     if (token) {
@@ -233,12 +234,9 @@ class SignInComponent extends Component {
     }
   };
 
-  onPressFacebookLogin = () => {
-    this.props.connect_to_facebook();
-  };
-
   render() {
     const { email, password, emailError, passwordError } = this.state;
+    const { api } = this.props;
     return (
       <KeyboardAvoidingView>
         <View style={{ marginVertical: 10, marginHorizontal: 15 }}>
@@ -270,6 +268,11 @@ class SignInComponent extends Component {
           onFacebookConnect={this.props.connect_to_facebook}
           onGoogleConnect={this.props.connect_to_google}
         />
+        {!!api.error && (
+          <Text style={textInputStyles.error}>
+            {api.error.message}
+          </Text>
+        )}
 
         <View
           style={{
@@ -291,13 +294,15 @@ class SignInComponent extends Component {
 }
 
 // Tabs
-const CustomTabBar = ({ navigation }) => {
+const LoginTabBar = ({ navigation }) => {
   const { routes, index } = navigation.state;
   const currentTab = routes[index]
   return (
     <View style={styles.tabStyle}>
       {routes.map(route => (
-        <View style={route.routeName == currentTab.routeName ? styles.activeTabStyle : null}>
+        <View
+          key={route.routeName}
+          style={route.routeName == currentTab.routeName ? styles.activeTabStyle : null}>
           <TouchableOpacity
             onPress={() => navigation.navigate(route.routeName)}
             accessibilityLabel="{route.routeName}">
@@ -342,7 +347,7 @@ const SocialLoginSignupView = ({ navigation }) => {
           </View>
         </View>
         <View style={[styles.cardView]}>
-          <CustomTabBar navigation={navigation} />
+          <LoginTabBar navigation={navigation} />
           <View style={styles.tabContainerStyle}>
             <ActiveScreen
               navigation={{
