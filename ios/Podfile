@@ -81,3 +81,5 @@ target 'test_deploy_0211_de_19317-tvOS' do
     # Pods for testing
   end
 end
+
+pod "FBSDKLoginKit"

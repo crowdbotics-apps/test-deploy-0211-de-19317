@@ -132,5 +132,20 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+  
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+    <key>CFBundleURLSchemes</key>
+    <array>
+      <string>fb708107706741764</string>
+    </array>
+    </dict>
+  </array>
+  <key>FacebookAppID</key>
+  <string>708107706741764</string>
+  <key>FacebookDisplayName</key>
+  <string>Crowdbotics Social Login</string>
 </dict>
 </plist>
+
