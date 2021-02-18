@@ -55,7 +55,8 @@ target 'test_deploy_0211_de_19317' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-
+  pod "FBSDKLoginKit"
+  pod 'GoogleSignIn', '~> 5.0.2'
   target 'test_deploy_0211_de_19317Tests' do
     inherit! :complete
     # Pods for testing
@@ -81,5 +82,3 @@ target 'test_deploy_0211_de_19317-tvOS' do
     # Pods for testing
   end
 end
-
-pod "FBSDKLoginKit"

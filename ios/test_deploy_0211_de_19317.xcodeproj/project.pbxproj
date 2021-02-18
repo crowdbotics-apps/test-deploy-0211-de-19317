@@ -48,6 +48,7 @@
 		B5BDF2F389B24F8EAF6EEB59 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54F1BA04FCED47AF89550842 /* Nunito-Bold.ttf */; };
 		B60B811922AD4DF1868ECA9E /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C269415E0FE346A19F799552 /* RobotoMono-Regular.ttf */; };
 		C2D9C52831C28F260A0167A5 /* libPods-test_deploy_0211_de_19317-test_deploy_0211_de_19317Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B7B125E50960F6651BCA66 /* libPods-test_deploy_0211_de_19317-test_deploy_0211_de_19317Tests.a */; };
+		C367A89D25DEF23F005F8CC8 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367A89C25DEF23F005F8CC8 /* File.swift */; };
 		C92AB2CD06384333AA1C058D /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0800C252345C44FFA7D16C67 /* Montserrat-Bold.ttf */; };
 		CA277339F11CE26262C17A15 /* libPods-test_deploy_0211_de_19317-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9316ACE3687608B33E9EB0 /* libPods-test_deploy_0211_de_19317-tvOS.a */; };
 		CCB1D492906B4B3D805A3DAD /* CrimsonText-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DF4C394DEAE411AB737460E /* CrimsonText-Italic.ttf */; };
@@ -146,6 +147,8 @@
 		BC0D053AB7364DD98A58FF9E /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		C25317AFE01E4B7DBFA0AC47 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		C269415E0FE346A19F799552 /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Regular.ttf"; path = "../src/assets/fonts/RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
+		C367A89B25DEF23F005F8CC8 /* test_deploy_0211_de_19317-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "test_deploy_0211_de_19317-Bridging-Header.h"; sourceTree = "<group>"; };
+		C367A89C25DEF23F005F8CC8 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		C44963A3BE00A33953091301 /* Pods-test_deploy_0211_de_19317-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test_deploy_0211_de_19317-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-test_deploy_0211_de_19317-tvOS/Pods-test_deploy_0211_de_19317-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C44ECF700E4544E587E93789 /* RobotoMono-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-BoldItalic.ttf"; path = "../src/assets/fonts/RobotoMono-BoldItalic.ttf"; sourceTree = "<group>"; };
 		C48B69FA3F87B18FAEBB94F4 /* Pods-test_deploy_0211_de_19317-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test_deploy_0211_de_19317-tvOS.release.xcconfig"; path = "Target Support Files/Pods-test_deploy_0211_de_19317-tvOS/Pods-test_deploy_0211_de_19317-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -256,6 +259,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				C367A89C25DEF23F005F8CC8 /* File.swift */,
 				13B07FAE1A68108700A75B9A /* test_deploy_0211_de_19317 */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* test_deploy_0211_de_19317Tests */,
@@ -263,6 +267,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				AA3F11E466B2FBD805C8C9CA /* Pods */,
 				DDDE09B4D05142C38814A360 /* Resources */,
+				C367A89B25DEF23F005F8CC8 /* test_deploy_0211_de_19317-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -415,7 +420,6 @@
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
 				2D02E4791E0B4A5D006451C7 /* Resources */,
 				2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */,
-				5E4D934BC5DDEA3BADDF9B3D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -462,6 +466,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 6YKR59QXKM;
+						LastSwiftMigration = 1240;
 						ProvisioningStyle = Manual;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -650,24 +655,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-test_deploy_0211_de_19317-test_deploy_0211_de_19317Tests/Pods-test_deploy_0211_de_19317-test_deploy_0211_de_19317Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5E4D934BC5DDEA3BADDF9B3D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-test_deploy_0211_de_19317-tvOS/Pods-test_deploy_0211_de_19317-tvOS-resources.sh",
-				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-test_deploy_0211_de_19317-tvOS/Pods-test_deploy_0211_de_19317-tvOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		750A2F298314BF7E7280B347 /* [CP] Check Pods Manifest.lock */ = {
@@ -864,6 +851,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				C367A89D25DEF23F005F8CC8 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -917,6 +905,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4A7645022A67EA4A74A47FDE /* Pods-test_deploy_0211_de_19317-test_deploy_0211_de_19317Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Distribution: Crowdbotics Corporation (6YKR59QXKM)";
 				CODE_SIGN_STYLE = Manual;
@@ -943,6 +932,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 004E85437CE4638E56A16065 /* Pods-test_deploy_0211_de_19317-test_deploy_0211_de_19317Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Distribution: Crowdbotics Corporation (6YKR59QXKM)";
 				CODE_SIGN_STYLE = Manual;
@@ -987,6 +977,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = test_deploy_0211_de_19317;
+				SWIFT_OBJC_BRIDGING_HEADER = "test_deploy_0211_de_19317-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -998,6 +989,7 @@
 			baseConfigurationReference = 7C47A149BE5291B60381FB86 /* Pods-test_deploy_0211_de_19317.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Distribution: Crowdbotics Corporation (6YKR59QXKM)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1012,6 +1004,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = test_deploy_0211_de_19317;
+				SWIFT_OBJC_BRIDGING_HEADER = "test_deploy_0211_de_19317-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
