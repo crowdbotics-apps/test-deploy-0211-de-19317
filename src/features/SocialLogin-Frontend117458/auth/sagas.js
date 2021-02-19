@@ -1,10 +1,12 @@
 import { put, call, all, spawn, takeEvery } from 'redux-saga/effects';
+import { Platform } from 'react-native';
 import { authServices } from './services';
 import * as types from './constants';
 import * as actions from './actions';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import { GoogleSignin } from '@react-native-community/google-signin';
 import { GOOGLE_WEB_CLIENT_ID, GOOGLE_IOS_CLIENT_ID } from './utils';
+import { appleForAndroid, appleForiOS } from "./apple";
 
 // Login
 function* apiLoginRequestWorker(action) {
@@ -119,6 +121,29 @@ function* apiGoogleConnectWatcher() {
   yield takeEvery(types.API_GOOGLE_CONNECT, apiGoogleConnectWorker);
 }
 
+// Apple
+function* apiAppleConnectWorker(action) {
+  try {
+    const signinFunction = Platform.select({
+      ios: appleForiOS,
+      android: appleForAndroid
+    })
+    const response = yield signinFunction();
+    console.log(response)
+    const result = yield call(authServices.apiAppleConnect, {
+      access_token: response.id_token,
+    });
+    yield put(actions.apiAppleConnectSuccess(result, action));
+  } catch (err) {
+    console.log(JSON.stringify(err));
+    yield put(actions.apiAppleConnectFailed(err, action));
+  }
+}
+
+function* apiAppleConnectWatcher() {
+  yield takeEvery(types.API_APPLE_CONNECT, apiAppleConnectWorker);
+}
+
 // Read more information about root sagas in the documentation
 // https://redux-saga.js.org/docs/advanced/RootSaga.html
 export default function* authRootSaga() {
@@ -129,6 +154,7 @@ export default function* authRootSaga() {
     apiPasswordResetWatcher,
     apiFacebookConnectWatcher,
     apiGoogleConnectWatcher,
+    apiAppleConnectWatcher
   ];
   yield all(
     sagas.map(saga =>

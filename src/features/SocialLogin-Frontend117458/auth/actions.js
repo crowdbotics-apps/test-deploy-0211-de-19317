@@ -86,3 +86,17 @@ export const apiGoogleConnectFailed = response => ({
   type: types.API_GOOGLE_CONNECT_FAILED,
   response,
 });
+
+// APPLE Connect data: {access_token: ''}
+export const apiAppleConnect = data => ({
+  type: types.API_APPLE_CONNECT,
+  data,
+});
+export const apiAppleConnectSuccess = response => ({
+  type: types.API_APPLE_CONNECT_SUCCESS,
+  response,
+});
+export const apiAppleConnectFailed = response => ({
+  type: types.API_APPLE_CONNECT_FAILED,
+  response,
+});

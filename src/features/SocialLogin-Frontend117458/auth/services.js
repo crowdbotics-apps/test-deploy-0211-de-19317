@@ -40,6 +40,12 @@ function apiGoogleConnect(data) {
   });
 }
 
+function apiAppleConnect(data) {
+  return socialLoginAPI.post(`/modules/social-auth/apple/connect/`, null, {
+    data
+  });
+}
+
 export const authServices = {
   apiLoginRequest,
   apiSignupRequest,
@@ -47,4 +53,5 @@ export const authServices = {
   apiResetPasswordRequest,
   apiFacebookConnect,
   apiGoogleConnect,
+  apiAppleConnect,
 };

@@ -14,6 +14,7 @@ import {
   apiSignupRequest,
   apiFacebookConnect,
   apiGoogleConnect,
+  apiAppleConnect
 } from '../auth/actions';
 import { styles, buttonStyles, textInputStyles, Color } from './styles';
 import { connect } from 'react-redux';
@@ -55,7 +56,7 @@ const Button = props => (
 const SocialButtonsView = props => (
   <View>
     <Button
-      title="Connect with Facebook"
+      title="Signin with Facebook"
       viewStyle={{
         ...styles.socialButton,
         borderColor: Color.facebook,
@@ -65,11 +66,18 @@ const SocialButtonsView = props => (
       onPress={props.onFacebookConnect}
     />
     <Button
-      title="Connect with Google"
+      title="Signin with Google"
       viewStyle={{ ...styles.socialButton, borderColor: Color.google }}
       textStyle={{ color: Color.google }}
       loading={props.loading}
       onPress={props.onGoogleConnect}
+    />
+    <Button
+      title="Signin with Apple"
+      viewStyle={{ ...styles.socialButton, borderColor: Color.black }}
+      textStyle={{ color: Color.black }}
+      loading={props.loading}
+      onPress={props.onAppleConnect}
     />
   </View>
 );
@@ -177,6 +185,7 @@ export class SignUpComponent extends Component {
           loading={this.props.api.isLoading}
           onFacebookConnect={this.props.connect_to_facebook}
           onGoogleConnect={this.props.connect_to_google}
+          onAppleConnect={this.props.connect_to_apple}
         />
         {!!this.state.requestError && (
           <Text style={textInputStyles.error}>
@@ -259,6 +268,7 @@ export class SignInComponent extends Component {
           loading={this.props.api.isLoading}
           onFacebookConnect={this.props.connect_to_facebook}
           onGoogleConnect={this.props.connect_to_google}
+          onAppleConnect={this.props.connect_to_apple}
         />
         {!!api.error && (
           <Text style={textInputStyles.error}>{api.error.message}</Text>
@@ -300,6 +310,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(apiSignupRequest({ email, password })),
     connect_to_facebook: () => dispatch(apiFacebookConnect()),
     connect_to_google: () => dispatch(apiGoogleConnect()),
+    connect_to_apple: () => dispatch(apiAppleConnect()),
   };
 };
 

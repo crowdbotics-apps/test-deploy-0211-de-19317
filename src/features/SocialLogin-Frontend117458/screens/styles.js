@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   socialButton: {
-    borderWidth: 1, backgroundColor: 'transparent'
+    borderWidth: 1, backgroundColor: 'transparent', fontSize: 5
   },
   input: {
     backgroundColor: 'white',
@@ -149,7 +149,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     margin: 10,
-    fontSize: 20,
+    fontSize: 18,
   },
 });
 
@@ -161,14 +161,14 @@ export const buttonStyles = {
     justifyContent: 'center',
     marginHorizontal: 10,
     marginBottom: 10,
-    height: 44,
+    height: 40,
   },
   textStyle: {
-    fontSize: 18,
+    fontSize: 16,
     textAlign: 'center',
     color: Color.white,
-    marginHorizontal: 40,
-    marginVertical: 12,
+    marginHorizontal: 20,
+    marginVertical: 10,
   },
 };
 
