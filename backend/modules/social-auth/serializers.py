@@ -1,5 +1,5 @@
 from rest_auth.registration.serializers import SocialLoginSerializer
-
+from rest_framework import serializers
 
 class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
     access_token = serializers.CharField(required=False, allow_blank=True)
