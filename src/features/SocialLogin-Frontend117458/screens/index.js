@@ -67,6 +67,8 @@ const SocialLoginSignupView = ({ navigation }) => {
                 flex: 1,
                 justifyContent: 'center',
                 resizeMode: 'cover',
+                height: '100%',
+                width: '100%'
               }}>
               <Image
                 source={{

@@ -4,7 +4,7 @@ import * as types from './constants';
 import * as actions from './actions';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import { GoogleSignin } from '@react-native-community/google-signin';
-import { GOOGLE_WEB_CLIENT_ID } from './utils';
+import { GOOGLE_WEB_CLIENT_ID, GOOGLE_IOS_CLIENT_ID } from './utils';
 
 // Login
 function* apiLoginRequestWorker(action) {
@@ -99,6 +99,7 @@ function* apiGoogleConnectWorker(action) {
     webClientId: GOOGLE_WEB_CLIENT_ID, // client ID of type WEB for your server
     offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
     forceCodeForRefreshToken: false,
+    iosClientId: GOOGLE_IOS_CLIENT_ID
   });
   try {
     yield GoogleSignin.hasPlayServices();
