@@ -5,12 +5,15 @@ This is React Native code for social login feature. FOr this feature to be fully
 
 In this section, for every mention of `<module_directory>`, consider the directory name of this module installed in your app. For example, if the SocialLogin module has a folder/directory of name `SocialLogin12345`, then that's whar you should use to replace `<module_directory>`.
 
+When you are finished with the setup, do not forget to commit all changed and created files to the GitHub project, so the module can be successfully deployed on Crowdbotics platform.
+
 #### 1. Install the following required dependencies (by modifying the project's package.json file under the `dependencies` section and add the dependencies manually):
 
 ```js
 "dependencies": {
   "@react-native-community/google-signin": "^5.0.0",
-  "react-native-fbsdk": "^3.0.0"
+  "react-native-fbsdk": "^3.0.0",
+  "@invertase/react-native-apple-authentication": "^2.1.0"
 }
 ```
 
@@ -169,10 +172,41 @@ After everything, open the file `<your_project_name>/android/app/build.gradle` l
 ...
 ```
 
-### iOS Configuration
-Follow this configuration:
-https://developers.facebook.com/docs/ios/getting-started/?sdk=cocoapods
-https://developers.facebook.com/docs/ios/componentsdks#cocoapods
+### iOS Configuration (Mac and access to XCode Required)
+Upon entering the `Android` page on the Facebook login configuration, there will be a question `Set up your development environment before using Facebook Login for iOS.`. Answer this by picking the dropdown option for `SDK: Cocoapods`. From there, follow the provided instructions. At this step, you should basically change the file `<your_project_name>/ios/Podfile` and add `pod 'FBSDKLoginKit'` after the last pod command and save. It should look like this:
+
+```pod
+...
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'FBSDKLoginKit' # ,_ Add this line HERE
+...
+```
+
+Then, on terminal, navigate to `<your_project_name>/ios/` folder and run:
+
+```sh
+pod install
+```
+
+Make sure that you have all the package.json dependencies installed before running the command above (consult the main README.md for the project for more information).
+
+In the next step `2. Add your Bundle Identifier`, open your project on xcode.
+> 1. Go to xcode and choose to open a project
+> 2. Open the `<your-Project_name>/ios/<your_project_name>.xcworkspace` file.
+> 3. Click on your project's name on the left side bar and look for `Bundle identifier`. Copy this value and paste in the Facebook configuration field for bundle ID.
+
+Go to the step `4. Configure Your Info.plist` and follow all the instructions.
+
+Finally, open your project again on XCode, find the root folder of the XCode project, click on right button of your mouse and select to create a `New File`. Choose it to be a `Swift` file and click create, as shown in the images below:
+
+![]()
+
+XCode will ask about Bridging Folder, just choose the option `Create Bridging Folder`.
+You are all setup for iOS deployment now!
+
 
 ## Configuring Google Login
 Similarly to Facebook, Google login should ideally be configured in the Google account that is going to manage everything related to this project (usually, the project owner). But for development purposes, it can temporarily be configured by anyone.
@@ -235,9 +269,32 @@ buildscript {
 ...
 ```
 
-### iOS Configuration
-Folow iOS guide for more information:
-https://github.com/react-native-google-signin/google-signin/blob/master/docs/ios-guide.md
+### iOS Configuration (Mac and access to XCode Required)
+You can follow the [official documentation](https://github.com/react-native-google-signin/google-signin/blob/master/docs/ios-guide.md#install-google-sign-in-sdk) to configure this, but below, brief steps will be provided.
+
+1. At The google console (as explained in previous steps), create or use an existing Google Project.  At the window `Configure your OAuth client`, choose `iOS` option. Visit XCode and find your Bundle Identifier (as explained at the iOS Facebook tutorial) and click Create. Download your client configuration and save the Client ID for later.
+
+2. Open your project on XCode, double-click in the project name in the left tree view. Select your app from the TARGETS section, then select the `Info` tab, and expand the `URL Types` section. Locate the `+` button and add the REVERSED CLIENT ID as your URL scheme. The reversed client ID is your client ID with the order of the dot-delimited fields reversed. [From the documentation](https://developers.google.com/identity/sign-in/ios/start-integrating#add_a_url_scheme_to_your_project), as an example, if you have a client id as `1234567890-abcdefg.apps.googleusercontent.com`, you should enter in your URL Schemes as `com.googleusercontent.apps.1234567890-abcdefg`.
+
+3. Similarly to Facebook, you will need to add google services to your project's Podfile at `<your_project_name>/ios/Podfile`. You should add the following ` pod 'GoogleSignIn', '~> 5.0.2'`: 
+
+```pod
+...
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+   pod 'GoogleSignIn', '~> 5.0.2'# ,_ Add this line HERE
+...
+```
+Then, on terminal, navigate to `<your_project_name>/ios/` folder and run:
+
+```sh
+pod install
+```
+
+4. Lastly, open the file `src/features/<your_module_folder>/auth/utils.js` inside your installed module and change the value for the variable `GOOGLE_IOS_CLIENT_ID` with your own ios client id.
+
 
 
 ## License

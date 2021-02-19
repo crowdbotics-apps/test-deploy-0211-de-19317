@@ -246,3 +246,31 @@ if DEBUG or not (EMAIL_HOST_USER and EMAIL_HOST_PASSWORD):
     if not DEBUG:
         logging.warning("You should setup `SENDGRID_USERNAME` and `SENDGRID_PASSWORD` env vars to send emails.")
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    "apple": {
+        "APP": {
+            # Your service identifier.
+            "client_id": "com.crowdbotics.social-login-19317",
+
+            # The Key ID (visible in the "View Key Details" page).
+            "secret": "crowdboticssociallogintest19317",
+
+             # Member ID/App ID Prefix -- you can find it below your name
+             # at the top right corner of the page, or it’s your App ID
+             # Prefix in your App ID.
+            "key": "6YKR59QXKM",
+
+            # The certificate you downloaded when generating the key.
+            "certificate_key": """-----BEGIN PRIVATE KEY-----
+MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgVVp9w+f2QjA/W9xj
+B+8ZZWlVcw2+1XDqjt9GUnuYO5SgCgYIKoZIzj0DAQehRANCAATA8nUZBuiJzs3q
+xywFOlOztAvbe0ciUL8epZKdN20v/VUrXvEEP9Geck+viBQ9RZA6rPb/DgXrRSwR
+vL/vCn1g
+-----END PRIVATE KEY-----
+"""
+        }
+    }
+}
