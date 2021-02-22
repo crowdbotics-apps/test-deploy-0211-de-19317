@@ -1,11 +1,11 @@
 import { put, call, all, spawn, takeEvery } from 'redux-saga/effects';
 import { Platform } from 'react-native';
-import { authServices } from './services';
-import * as types from './constants';
-import * as actions from './actions';
+import { authServices } from '../services';
+import * as types from '../constants';
+import * as actions from '../actions';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import { GoogleSignin } from '@react-native-community/google-signin';
-import { GOOGLE_WEB_CLIENT_ID, GOOGLE_IOS_CLIENT_ID } from './utils';
+import { GOOGLE_WEB_CLIENT_ID, GOOGLE_IOS_CLIENT_ID } from '../utils';
 import { appleForAndroid, appleForiOS } from "./apple";
 
 // Login
@@ -65,7 +65,7 @@ function* apiPasswordResetWatcher() {
 }
 
 // Facebook
-function* apiFacebookConnectWorker(action) {
+function* apiFacebookLoginWorker(action) {
   try {
     const fb_result = yield LoginManager.logInWithPermissions([
       'public_profile',
@@ -73,13 +73,13 @@ function* apiFacebookConnectWorker(action) {
     ]);
     if (!fb_result.isCancelled) {
       const data = yield AccessToken.getCurrentAccessToken();
-      const result = yield call(authServices.apiFacebookConnect, {
+      const result = yield call(authServices.apiFacebookLogin, {
         access_token: data.accessToken,
       });
-      yield put(actions.apiFacebookConnectSuccess(result, action));
+      yield put(actions.apiFacebookLoginSuccess(result, action));
     } else {
       yield put(
-        actions.apiFacebookConnectFailed(
+        actions.apiFacebookLoginFailed(
           { message: 'Facebook login failed' },
           action
         )
@@ -87,16 +87,16 @@ function* apiFacebookConnectWorker(action) {
     }
   } catch (err) {
     console.log(JSON.stringify(err));
-    yield put(actions.apiFacebookConnectFailed(err, action));
+    yield put(actions.apiFacebookLoginFailed(err, action));
   }
 }
 
-function* apiFacebookConnectWatcher() {
-  yield takeEvery(types.API_FACEBOOK_CONNECT, apiFacebookConnectWorker);
+function* apiFacebookLoginWatcher() {
+  yield takeEvery(types.API_FACEBOOK_LOGIN, apiFacebookLoginWorker);
 }
 
 // Google
-function* apiGoogleConnectWorker(action) {
+function* apiGoogleLoginWorker(action) {
   GoogleSignin.configure({
     webClientId: GOOGLE_WEB_CLIENT_ID, // client ID of type WEB for your server
     offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
@@ -107,22 +107,22 @@ function* apiGoogleConnectWorker(action) {
     yield GoogleSignin.hasPlayServices();
     yield GoogleSignin.signIn();
     const tokens = yield GoogleSignin.getTokens();
-    const result = yield call(authServices.apiGoogleConnect, {
+    const result = yield call(authServices.apiGoogleLogin, {
       access_token: tokens.accessToken,
     });
-    yield put(actions.apiGoogleConnectSuccess(result, action));
+    yield put(actions.apiGoogleLoginSuccess(result, action));
   } catch (err) {
     console.log(JSON.stringify(err));
-    yield put(actions.apiGoogleConnectFailed(err, action));
+    yield put(actions.apiGoogleLoginFailed(err, action));
   }
 }
 
-function* apiGoogleConnectWatcher() {
-  yield takeEvery(types.API_GOOGLE_CONNECT, apiGoogleConnectWorker);
+function* apiGoogleLoginWatcher() {
+  yield takeEvery(types.API_GOOGLE_LOGIN, apiGoogleLoginWorker);
 }
 
 // Apple
-function* apiAppleConnectWorker(action) {
+function* apiAppleLoginWorker(action) {
   try {
     const signinFunction = Platform.select({
       ios: appleForiOS,
@@ -130,18 +130,18 @@ function* apiAppleConnectWorker(action) {
     })
     const response = yield signinFunction();
     console.log(response)
-    const result = yield call(authServices.apiAppleConnect, {
+    const result = yield call(authServices.apiAppleLogin, {
       access_token: response.id_token,
     });
-    yield put(actions.apiAppleConnectSuccess(result, action));
+    yield put(actions.apiAppleLoginSuccess(result, action));
   } catch (err) {
     console.log(JSON.stringify(err));
-    yield put(actions.apiAppleConnectFailed(err, action));
+    yield put(actions.apiAppleLoginFailed(err, action));
   }
 }
 
-function* apiAppleConnectWatcher() {
-  yield takeEvery(types.API_APPLE_CONNECT, apiAppleConnectWorker);
+function* apiAppleLoginWatcher() {
+  yield takeEvery(types.API_APPLE_LOGIN, apiAppleLoginWorker);
 }
 
 // Read more information about root sagas in the documentation
@@ -152,9 +152,9 @@ export default function* authRootSaga() {
     apiLogoutRequestWatcher,
     apiSignupRequestWatcher,
     apiPasswordResetWatcher,
-    apiFacebookConnectWatcher,
-    apiGoogleConnectWatcher,
-    apiAppleConnectWatcher
+    apiFacebookLoginWatcher,
+    apiGoogleLoginWatcher,
+    apiAppleLoginWatcher
   ];
   yield all(
     sagas.map(saga =>

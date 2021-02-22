@@ -120,7 +120,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         },
       });
 
-    case types.API_FACEBOOK_CONNECT:
+    case types.API_FACEBOOK_LOGIN:
       return Object.assign({}, state, {
         api: {
           isLoading: true,
@@ -129,7 +129,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         },
         token: null,
       });
-    case types.API_FACEBOOK_CONNECT_SUCCESS:
+    case types.API_FACEBOOK_LOGIN_SUCCESS:
       console.log(state);
       return Object.assign({}, state, {
         api: {
@@ -140,7 +140,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         token: action.response?.data?.key,
         user: action.response?.data?.user,
       });
-    case types.API_FACEBOOK_CONNECT_FAILED:
+    case types.API_FACEBOOK_LOGIN_FAILED:
       return Object.assign({}, state, {
         api: {
           isLoading: false,
@@ -149,7 +149,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         },
       });
 
-    case types.API_GOOGLE_CONNECT:
+    case types.API_GOOGLE_LOGIN:
       return Object.assign({}, state, {
         api: {
           isLoading: true,
@@ -158,7 +158,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         },
         token: null,
       });
-    case types.API_GOOGLE_CONNECT_SUCCESS:
+    case types.API_GOOGLE_LOGIN_SUCCESS:
       return Object.assign({}, state, {
         api: {
           isLoading: false,
@@ -168,7 +168,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         token: action.response?.data?.key,
         user: action.response?.data?.user,
       });
-    case types.API_GOOGLE_CONNECT_FAILED:
+    case types.API_GOOGLE_LOGIN_FAILED:
       return Object.assign({}, state, {
         api: {
           isLoading: false,
@@ -177,7 +177,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         },
       });
 
-    case types.API_APPLE_CONNECT:
+    case types.API_APPLE_LOGIN:
       return Object.assign({}, state, {
         api: {
           isLoading: true,
@@ -186,7 +186,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         },
         token: null,
       });
-    case types.API_APPLE_CONNECT_SUCCESS:
+    case types.API_APPLE_LOGIN_SUCCESS:
       console.log(state);
       return Object.assign({}, state, {
         api: {
@@ -197,7 +197,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         token: action.response?.data?.key,
         user: action.response?.data?.user,
       });
-    case types.API_APPLE_CONNECT_FAILED:
+    case types.API_APPLE_LOGIN_FAILED:
       return Object.assign({}, state, {
         api: {
           isLoading: false,

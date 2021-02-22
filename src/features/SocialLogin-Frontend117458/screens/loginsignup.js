@@ -12,9 +12,9 @@ import { HOME_SCREEN_NAME, validateEmail } from './constants.js';
 import {
   apiLoginRequest,
   apiSignupRequest,
-  apiFacebookConnect,
-  apiGoogleConnect,
-  apiAppleConnect
+  apiFacebookLogin,
+  apiGoogleLogin,
+  apiAppleLogin
 } from '../auth/actions';
 import { styles, buttonStyles, textInputStyles, Color } from './styles';
 import { connect } from 'react-redux';
@@ -308,9 +308,9 @@ const mapDispatchToProps = dispatch => {
       dispatch(apiLoginRequest({ username: email, password })),
     signup: (email, password) =>
       dispatch(apiSignupRequest({ email, password })),
-    connect_to_facebook: () => dispatch(apiFacebookConnect()),
-    connect_to_google: () => dispatch(apiGoogleConnect()),
-    connect_to_apple: () => dispatch(apiAppleConnect()),
+    connect_to_facebook: () => dispatch(apiFacebookLogin()),
+    connect_to_google: () => dispatch(apiGoogleLogin()),
+    connect_to_apple: () => dispatch(apiAppleLogin()),
   };
 };
 

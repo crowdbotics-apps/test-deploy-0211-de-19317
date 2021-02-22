@@ -28,20 +28,20 @@ function apiResetPasswordRequest(action) {
   });
 }
 
-function apiFacebookConnect(data) {
-  return socialLoginAPI.post(`/modules/social-auth/facebook/connect/`, null, {
+function apiFacebookLogin(data) {
+  return socialLoginAPI.post(`/modules/social-auth/facebook/login/`, null, {
     data
   });
 }
 
-function apiGoogleConnect(data) {
-  return socialLoginAPI.post(`/modules/social-auth/google/connect/`, null, {
+function apiGoogleLogin(data) {
+  return socialLoginAPI.post(`/modules/social-auth/google/login/`, null, {
     data
   });
 }
 
-function apiAppleConnect(data) {
-  return socialLoginAPI.post(`/modules/social-auth/apple/connect/`, null, {
+function apiAppleLogin(data) {
+  return socialLoginAPI.post(`/modules/social-auth/apple/login/`, null, {
     data
   });
 }
@@ -51,7 +51,7 @@ export const authServices = {
   apiSignupRequest,
   apiLogoutRequest,
   apiResetPasswordRequest,
-  apiFacebookConnect,
-  apiGoogleConnect,
-  apiAppleConnect,
+  apiFacebookLogin,
+  apiGoogleLogin,
+  apiAppleLogin,
 };

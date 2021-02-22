@@ -11,8 +11,8 @@ import { BACKGROUND_URL, LOGO_URL } from './constants.js';
 import {
   apiLoginRequest,
   apiSignupRequest,
-  apiFacebookConnect,
-  apiGoogleConnect,
+  apiFacebookLogin,
+  apiGoogleLogin,
 } from '../auth/actions';
 import reducer from '../auth/reducers';
 import { styles } from './styles';
@@ -129,7 +129,7 @@ export default {
   actions: [
     apiLoginRequest,
     apiSignupRequest,
-    apiFacebookConnect,
-    apiGoogleConnect,
+    apiFacebookLogin,
+    apiGoogleLogin,
   ],
 };
