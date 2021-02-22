@@ -1,4 +1,4 @@
-from rest_auth.registration.serializers import SocialLoginSerializer
+from rest_auth.registration.serializers import SocialLoginSerializer, SocialConnectMixin
 from rest_framework import serializers
 from django.http import HttpRequest
 from django.contrib.auth import get_user_model
@@ -40,13 +40,13 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
 
         if not view:
             raise serializers.ValidationError(
-                _('View is not defined, pass it as a context variable')
+                'View is not defined, pass it as a context variable'
             )
 
         adapter_class = getattr(view, 'adapter_class', None)
         if not adapter_class:
             raise serializers.ValidationError(
-                _('Define adapter_class in view'))
+                'Define adapter_class in view')
 
         adapter = adapter_class(request)
         app = adapter.get_provider().get_app(request)
@@ -66,11 +66,11 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
 
             if not self.callback_url:
                 raise serializers.ValidationError(
-                    _('Define callback_url in view')
+                    'Define callback_url in view'
                 )
             if not self.client_class:
                 raise serializers.ValidationError(
-                    _('Define client_class in view')
+                    'Define client_class in view'
                 )
 
             code = attrs.get('code')
@@ -93,7 +93,7 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
 
         else:
             raise serializers.ValidationError(
-                _('Incorrect input. access_token or code is required.'))
+                'Incorrect input. access_token or code is required.')
 
         # Custom changes introduced to handle apple login on allauth
         try:
@@ -110,20 +110,27 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
                 adapter, app, social_token, access_token)
             complete_social_login(request, login)
         except HTTPError:
-            raise serializers.ValidationError(_('Incorrect value'))
+            raise serializers.ValidationError('Incorrect value')
 
         if not login.is_existing:
             # We have an account already signed up in a different flow
             # with the same email address: raise an exception, for security reasons.
-            # If you decide to follow up with this flow, implement your linking accounts logic here.
-            if allauth_settings.UNIQUE_EMAIL:
-                # Do we have an account already with this email address?
-                if get_user_model().objects.filter(email=login.user.email).exists():
-                    raise serializers.ValidationError(
-                        'E-mail already registered using different signup method.')
+            # If you decide to follow up with this flow, checkout allauth implementation:
+            # add login.connect(request, email_address.user)
+            # https://github.com/pennersr/django-allauth/issues/1149
+            #
+            # if allauth_settings.UNIQUE_EMAIL:
+            #     # Do we have an account already with this email address?
+            #     if get_user_model().objects.filter(email=login.user.email).exists():
+            #         raise serializers.ValidationError(
+            #             'E-mail already registered using different signup method.')
 
             login.lookup()
             login.save(request, connect=True)
 
         attrs['user'] = login.account.user
         return attrs
+
+
+class CustomAppleConnectSerializer(SocialConnectMixin, CustomAppleSocialLoginSerializer):
+    pass
