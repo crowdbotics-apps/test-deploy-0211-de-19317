@@ -1,8 +1,10 @@
 from rest_auth.registration.serializers import SocialLoginSerializer
 from rest_framework import serializers
 from django.http import HttpRequest
+from django.contrib.auth import get_user_model
 from allauth.socialaccount.providers.oauth2.client import OAuth2Error
 from allauth.socialaccount.helpers import complete_social_login
+from allauth.account import app_settings as allauth_settings
 
 class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
     access_token = serializers.CharField(required=False, allow_blank=True)
