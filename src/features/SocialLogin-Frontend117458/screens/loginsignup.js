@@ -56,7 +56,7 @@ const Button = props => (
 const SocialButtonsView = props => (
   <View>
     <Button
-      title="Signin with Facebook"
+      title="Continue with Facebook"
       viewStyle={{
         ...styles.socialButton,
         borderColor: Color.facebook,
@@ -66,14 +66,14 @@ const SocialButtonsView = props => (
       onPress={props.onFacebookConnect}
     />
     <Button
-      title="Signin with Google"
+      title="Continue with Google"
       viewStyle={{ ...styles.socialButton, borderColor: Color.google }}
       textStyle={{ color: Color.google }}
       loading={props.loading}
       onPress={props.onGoogleConnect}
     />
     <Button
-      title="Signin with Apple"
+      title="Continue with Apple"
       viewStyle={{ ...styles.socialButton, borderColor: Color.black }}
       textStyle={{ color: Color.black }}
       loading={props.loading}
