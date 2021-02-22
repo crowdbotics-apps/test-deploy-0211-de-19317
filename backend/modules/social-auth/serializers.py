@@ -6,6 +6,7 @@ from allauth.socialaccount.providers.oauth2.client import OAuth2Error
 from allauth.socialaccount.helpers import complete_social_login
 from allauth.account import app_settings as allauth_settings
 
+
 class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
     access_token = serializers.CharField(required=False, allow_blank=True)
     code = serializers.CharField(required=False, allow_blank=True)
@@ -98,14 +99,11 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
         try:
             social_token = adapter.parse_token({
                 'access_token': access_token,
-                'id_token': attrs.get('id_token') # For apple login
+                'id_token': attrs.get('id_token')  # For apple login
             })
             social_token.app = app
         except OAuth2Error as err:
             raise serializers.ValidationError(str(err)) from err
-
-
-
 
         try:
             login = self.get_social_login(
@@ -123,7 +121,7 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
                 # Do we have an account already with this email address?
                 if get_user_model().objects.filter(email=login.user.email).exists():
                     raise serializers.ValidationError(
-                        _('E-mail already registered using different signup method.'))
+                        'E-mail already registered using different signup method.')
 
             login.lookup()
             login.save(request, connect=True)
