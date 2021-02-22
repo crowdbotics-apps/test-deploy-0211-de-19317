@@ -1,9 +1,12 @@
 from rest_auth.registration.serializers import SocialLoginSerializer
 from rest_framework import serializers
+from django.http import HttpRequest
+from allauth.socialaccount.providers.oauth2.client import OAuth2Error
 
 class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
     access_token = serializers.CharField(required=False, allow_blank=True)
     code = serializers.CharField(required=False, allow_blank=True)
+    id_token = serializers.CharField(required=False, allow_blank=True)
 
     def _get_request(self):
         request = self.context.get('request')
@@ -89,8 +92,17 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
                 _('Incorrect input. access_token or code is required.'))
 
         # The important change is here.
-        social_token = adapter.parse_token(token)
-        social_token.app = app
+        try:
+            social_token = adapter.parse_token({
+                'access_token': access_token,
+                'id_token': attrs.get('id_token') # For apple login
+            })
+            social_token.app = app
+        except OAuth2Error as err:
+            raise serializers.ValidationError(str(err)) from err
+
+
+
 
         try:
             login = self.get_social_login(
