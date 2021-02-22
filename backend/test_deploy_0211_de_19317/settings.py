@@ -253,7 +253,7 @@ SOCIALACCOUNT_PROVIDERS = {
     "apple": {
         "APP": {
             # Your service identifier.
-            "client_id": "com.crowdbotics.social-login-19317",
+            "client_id": "com.crowdbotics.test-deploy-0211-de-19317",
 
             # The Key ID (visible in the "View Key Details" page).
             "secret": "crowdboticssociallogintest19317",
