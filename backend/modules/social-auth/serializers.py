@@ -95,7 +95,7 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
             raise serializers.ValidationError(
                 _('Incorrect input. access_token or code is required.'))
 
-        # The important change is here.
+        # Custom changes introduced to handle apple login on allauth
         try:
             social_token = adapter.parse_token({
                 'access_token': access_token,
@@ -114,9 +114,8 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
 
         if not login.is_existing:
             # We have an account already signed up in a different flow
-            # with the same email address: raise an exception.
-            # This needs to be handled in the frontend. We can not just
-            # link up the accounts due to security constraints
+            # with the same email address: raise an exception, for security reasons.
+            # If you decide to follow up with this flow, implement your linking accounts logic here.
             if allauth_settings.UNIQUE_EMAIL:
                 # Do we have an account already with this email address?
                 if get_user_model().objects.filter(email=login.user.email).exists():
