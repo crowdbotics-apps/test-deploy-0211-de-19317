@@ -93,10 +93,11 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
 
         # The important change is here.
         try:
-            social_token = adapter.parse_token({
-                'access_token': access_token,
-                'id_token': attrs.get('id_token') # For apple login
-            })
+            # social_token = adapter.parse_token({
+            #     'access_token': access_token,
+            #     'id_token': attrs.get('id_token') # For apple login
+            # })
+            social_token = adapter.parse_token({'access_token': access_token})
             social_token.app = app
         except OAuth2Error as err:
             raise serializers.ValidationError(str(err)) from err
