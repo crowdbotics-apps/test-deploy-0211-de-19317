@@ -1,6 +1,7 @@
 import 'react-native-get-random-values';
 import { v4 as uuid } from 'uuid';
 import { appleAuthAndroid, appleAuth } from '@invertase/react-native-apple-authentication';
+import { APPLE_SERVICE_ID, APPLE_REDIRECT_CALLBACK } from '../utils';
 
 export async function appleForAndroid() {
   // Generate secure, random values for state and nonce
@@ -14,8 +15,7 @@ export async function appleForAndroid() {
 
     // Return URL added to your Apple dev console. We intercept this redirect, but it must still match
     // the URL you provided to Apple. It can be an empty route on your backend as it's never called.
-    redirectUri:
-      'https://test-deploy-0211-de-19317.botics.co/modules/social-auth/apple/connect/',
+    redirectUri: APPLE_REDIRECT_CALLBACK,
 
     // The type of response requested - code, id_token, or both.
     responseType: appleAuthAndroid.ResponseType.ALL,
@@ -31,7 +31,19 @@ export async function appleForAndroid() {
   });
 
   // Open the browser window for user sign in
-  return await appleAuthAndroid.signIn();
+  try {
+    let response = await appleAuthAndroid.signIn();
+  } catch (error) {
+    if (error && error.message) {
+      switch (error.message) {
+        // Insert other error treatments here, if necessary
+        case appleAuthAndroid.Error.SIGNIN_CANCELLED:
+          throw new Error('Apple signin cancelled by user.');
+        default:
+          throw error;
+      }
+    }
+  }
 }
 
 export async function appleForiOS() {
