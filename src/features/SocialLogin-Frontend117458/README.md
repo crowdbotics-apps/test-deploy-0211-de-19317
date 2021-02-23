@@ -173,15 +173,15 @@ After everything, open the file `<your_project_name>/android/app/build.gradle` l
 ```
 
 ### iOS Configuration (Mac and access to XCode Required)
-Upon entering the `Android` page on the Facebook login configuration, there will be a question `Set up your development environment before using Facebook Login for iOS.`. Answer this by picking the dropdown option for `SDK: Cocoapods`. From there, follow the provided instructions. At this step, you should basically change the file `<your_project_name>/ios/Podfile` and add `pod 'FBSDKLoginKit'` after the last pod command and save. It should look like this:
+Upon entering the `Android` page on the Facebook login configuration, there will be a question `Set up your development environment before using Facebook Login for iOS.`. Answer this by picking the dropdown option for `SDK: Cocoapods`. From there, follow the provided instructions. At this step, you should basically change the file `<your_project_name>/ios/Podfile` and add `pod 'FBSDKLoginKit'` and `pod 'FBSDKCoreKit'` after the last pod command and save. It should look like this:
 
 ```pod
 ...
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-
-  pod 'FBSDKLoginKit' # ,_ Add this line HERE
+  pod 'FBSDKCoreKit' # <- Add this line HERE
+  pod 'FBSDKLoginKit' # <- Add this line HERE
 ...
 ```
 
@@ -296,6 +296,14 @@ pod install
 4. Lastly, open the file `src/features/<your_module_folder>/auth/utils.js` inside your installed module and change the value for the variable `GOOGLE_IOS_CLIENT_ID` with your own ios client id.
 
 
+## Configuring Apple Signin (Apple Developer account, iOS and Xcode required)
+
+
+## iOS and XCode Troubleshooting
+1. Error when building: [FBSDKCoreKit/FBSDKCoreKit.modulemap' not found](https://github.com/facebook/react-native-fbsdk/issues/780#issuecomment-672754083)
+2. [Official docs for Facebook and iOS](https://developers.facebook.com/docs/facebook-login/ios)
+3. [Official docs for Google and iOS](https://developers.google.com/identity/sign-in/ios)
+4. [Official docs for signin with Apple](https://developer.apple.com/sign-in-with-apple/get-started/)
 
 ## License
 

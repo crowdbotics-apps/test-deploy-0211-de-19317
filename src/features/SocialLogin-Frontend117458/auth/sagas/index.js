@@ -4,7 +4,7 @@ import { authServices } from '../services';
 import * as types from '../constants';
 import * as actions from '../actions';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
-import { GoogleSignin } from '@react-native-community/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 import { GOOGLE_WEB_CLIENT_ID, GOOGLE_IOS_CLIENT_ID } from '../utils';
 import { appleForAndroid, appleForiOS } from "./apple";
 
@@ -112,7 +112,10 @@ function* apiGoogleLoginWorker(action) {
     });
     yield put(actions.apiGoogleLoginSuccess(result, action));
   } catch (err) {
-    console.log(JSON.stringify(err));
+    let error = err
+    if (err.code === statusCodes.SIGN_IN_CANCELLED) {
+      error.message = 'The user canceled the signin request.'
+    }
     yield put(actions.apiGoogleLoginFailed(err, action));
   }
 }

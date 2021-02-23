@@ -38,7 +38,7 @@ export async function appleForAndroid() {
       switch (error.message) {
         // Insert other error treatments here, if necessary
         case appleAuthAndroid.Error.SIGNIN_CANCELLED:
-          throw new Error('Apple signin cancelled by user.');
+          throw new Error('The user canceled the signin request.');
         default:
           throw error;
       }
