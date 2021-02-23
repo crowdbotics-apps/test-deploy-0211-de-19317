@@ -1,7 +1,6 @@
 import 'react-native-get-random-values';
 import { v4 as uuid } from 'uuid';
-import { appleAuthAndroid } from '@invertase/react-native-apple-authentication';
-import {} from "../utils";
+import { appleAuthAndroid, appleAuth } from '@invertase/react-native-apple-authentication';
 
 export async function appleForAndroid() {
   // Generate secure, random values for state and nonce
@@ -11,7 +10,7 @@ export async function appleForAndroid() {
   // Configure the request
   appleAuthAndroid.configure({
     // The Service ID you registered with Apple
-    clientId: APPLE_SERVICE_ID,
+    clientId: 'com.crowdbotics.test-deploy-0211-de-19317',
 
     // Return URL added to your Apple dev console. We intercept this redirect, but it must still match
     // the URL you provided to Apple. It can be an empty route on your backend as it's never called.
@@ -40,15 +39,17 @@ export async function appleForiOS() {
     requestedOperation: appleAuth.Operation.LOGIN,
     requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
   });
+  console.log(appleAuthRequestResponse)
 
   // get current authentication state for user
   // /!\ This method must be tested on a real device. On the iOS simulator it always throws an error.
-  const credentialState = await appleAuth.getCredentialStateForUser(
-    appleAuthRequestResponse.user,
-  );
+  // const credentialState = await appleAuth.getCredentialStateForUser(
+  //   appleAuthRequestResponse.user,
+  // );
+  // console.log(credentialState)
 
   // use credentialState response to ensure the user is authenticated
-  if (credentialState === appleAuth.State.AUTHORIZED) {
+  // if (credentialState === appleAuth.State.AUTHORIZED) {
     // user is authenticated
-  }
+  // }
 }

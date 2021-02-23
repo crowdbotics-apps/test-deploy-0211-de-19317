@@ -55,7 +55,9 @@ target 'test_deploy_0211_de_19317' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-  pod "FBSDKLoginKit"
+  pod 'FBSDKCoreKit', :modular_headers => true
+  pod 'FBSDKLoginKit', :modular_headers => true
+  pod 'FBSDKShareKit', :modular_headers => true
   pod 'GoogleSignIn', '~> 5.0.2'
   target 'test_deploy_0211_de_19317Tests' do
     inherit! :complete

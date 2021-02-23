@@ -48,7 +48,9 @@
 		B5BDF2F389B24F8EAF6EEB59 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54F1BA04FCED47AF89550842 /* Nunito-Bold.ttf */; };
 		B60B811922AD4DF1868ECA9E /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C269415E0FE346A19F799552 /* RobotoMono-Regular.ttf */; };
 		C2D9C52831C28F260A0167A5 /* libPods-test_deploy_0211_de_19317-test_deploy_0211_de_19317Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B7B125E50960F6651BCA66 /* libPods-test_deploy_0211_de_19317-test_deploy_0211_de_19317Tests.a */; };
-		C367A89D25DEF23F005F8CC8 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367A89C25DEF23F005F8CC8 /* File.swift */; };
+		C367A97E25E56A87005F8CC8 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
+		C3B5BBD325E5868B00831BB0 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5BBD225E5868B00831BB0 /* File.swift */; };
+		C3B5BBEC25E591EC00831BB0 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5BBD225E5868B00831BB0 /* File.swift */; };
 		C92AB2CD06384333AA1C058D /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0800C252345C44FFA7D16C67 /* Montserrat-Bold.ttf */; };
 		CA277339F11CE26262C17A15 /* libPods-test_deploy_0211_de_19317-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9316ACE3687608B33E9EB0 /* libPods-test_deploy_0211_de_19317-tvOS.a */; };
 		CCB1D492906B4B3D805A3DAD /* CrimsonText-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DF4C394DEAE411AB737460E /* CrimsonText-Italic.ttf */; };
@@ -148,7 +150,8 @@
 		C25317AFE01E4B7DBFA0AC47 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		C269415E0FE346A19F799552 /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Regular.ttf"; path = "../src/assets/fonts/RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
 		C367A89B25DEF23F005F8CC8 /* test_deploy_0211_de_19317-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "test_deploy_0211_de_19317-Bridging-Header.h"; sourceTree = "<group>"; };
-		C367A89C25DEF23F005F8CC8 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		C3B5BBD125E5868B00831BB0 /* test_deploy_0211_de_19317Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "test_deploy_0211_de_19317Tests-Bridging-Header.h"; sourceTree = "<group>"; };
+		C3B5BBD225E5868B00831BB0 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		C44963A3BE00A33953091301 /* Pods-test_deploy_0211_de_19317-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test_deploy_0211_de_19317-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-test_deploy_0211_de_19317-tvOS/Pods-test_deploy_0211_de_19317-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C44ECF700E4544E587E93789 /* RobotoMono-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-BoldItalic.ttf"; path = "../src/assets/fonts/RobotoMono-BoldItalic.ttf"; sourceTree = "<group>"; };
 		C48B69FA3F87B18FAEBB94F4 /* Pods-test_deploy_0211_de_19317-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test_deploy_0211_de_19317-tvOS.release.xcconfig"; path = "Target Support Files/Pods-test_deploy_0211_de_19317-tvOS/Pods-test_deploy_0211_de_19317-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C367A97E25E56A87005F8CC8 /* JavaScriptCore.framework in Frameworks */,
 				D44699BCD7D9742ED80C7741 /* libPods-test_deploy_0211_de_19317.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,7 +263,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				C367A89C25DEF23F005F8CC8 /* File.swift */,
+				C3B5BBD225E5868B00831BB0 /* File.swift */,
 				13B07FAE1A68108700A75B9A /* test_deploy_0211_de_19317 */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* test_deploy_0211_de_19317Tests */,
@@ -268,6 +272,7 @@
 				AA3F11E466B2FBD805C8C9CA /* Pods */,
 				DDDE09B4D05142C38814A360 /* Resources */,
 				C367A89B25DEF23F005F8CC8 /* test_deploy_0211_de_19317-Bridging-Header.h */,
+				C3B5BBD125E5868B00831BB0 /* test_deploy_0211_de_19317Tests-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -460,8 +465,8 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 6YKR59QXKM;
-						ProvisioningStyle = Manual;
+						LastSwiftMigration = 1240;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
@@ -843,6 +848,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* test_deploy_0211_de_19317Tests.m in Sources */,
+				C3B5BBD325E5868B00831BB0 /* File.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,7 +857,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				C367A89D25DEF23F005F8CC8 /* File.swift in Sources */,
+				C3B5BBEC25E591EC00831BB0 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -907,9 +913,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "Apple Distribution: Crowdbotics Corporation (6YKR59QXKM)";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 6YKR59QXKM;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -924,6 +932,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "test_deploy_0211_de_19317Tests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/test_deploy_0211_de_19317.app/test_deploy_0211_de_19317";
 			};
 			name = Debug;
@@ -934,10 +947,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "Apple Distribution: Crowdbotics Corporation (6YKR59QXKM)";
-				CODE_SIGN_STYLE = Manual;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 6YKR59QXKM;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = test_deploy_0211_de_19317Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -948,6 +963,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "test_deploy_0211_de_19317Tests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/test_deploy_0211_de_19317.app/test_deploy_0211_de_19317";
 			};
 			name = Release;
@@ -964,6 +983,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 6YKR59QXKM;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"FB_SONARKIT_ENABLED=1",
@@ -975,7 +995,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "YKR59QXKM.com.crowdbotics.social-login-19317";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.crowdbotics.test-deploy-0211-de-19317";
 				PRODUCT_NAME = test_deploy_0211_de_19317;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "test_deploy_0211_de_19317-Bridging-Header.h";
@@ -995,7 +1015,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6YKR59QXKM;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = test_deploy_0211_de_19317/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1003,7 +1024,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "YKR59QXKM.com.crowdbotics.social-login-19317";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.crowdbotics.test-deploy-0211-de-19317";
 				PRODUCT_NAME = test_deploy_0211_de_19317;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "test_deploy_0211_de_19317-Bridging-Header.h";
@@ -1035,7 +1056,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.test_deploy_0211_de_19317-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.crowdbotics.test-deploy-0211-de-19317-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1066,7 +1087,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.test_deploy_0211_de_19317-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.crowdbotics.test-deploy-0211-de-19317-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
