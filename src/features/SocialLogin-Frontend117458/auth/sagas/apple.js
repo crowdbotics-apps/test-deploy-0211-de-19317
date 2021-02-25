@@ -51,17 +51,12 @@ export async function appleForiOS() {
     requestedOperation: appleAuth.Operation.LOGIN,
     requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
   });
-  console.log(appleAuthRequestResponse)
-
-  // get current authentication state for user
-  // /!\ This method must be tested on a real device. On the iOS simulator it always throws an error.
-  // const credentialState = await appleAuth.getCredentialStateForUser(
-  //   appleAuthRequestResponse.user,
-  // );
-  // console.log(credentialState)
-
-  // use credentialState response to ensure the user is authenticated
-  // if (credentialState === appleAuth.State.AUTHORIZED) {
-    // user is authenticated
-  // }
+  // make response return an id_token to match the android version.
+  const response = {
+    user: newUser,
+    email,
+    nonce,
+    id_token: identityToken,
+  } = appleAuthRequestResponse;
+  return response
 }

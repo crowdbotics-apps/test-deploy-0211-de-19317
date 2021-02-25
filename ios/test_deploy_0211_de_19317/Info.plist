@@ -27,7 +27,21 @@
 			<array>
 				<string>fb708107706741764</string>
 			</array>
-			<key>LSApplicationQueriesSchemes</key>
+		</dict>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string></string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.39330537799-u0blpksbu34kffg2oadk1bescb4793g5</string>
+			</array>
+		</dict>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
 			<array>
 				<string>fbapi</string>
 				<string>fbapi20130214</string>
@@ -45,22 +59,8 @@
 				<string>fbauth2</string>
 				<string>fbshareextension</string>
 			</array>
-		</dict>
-		<dict>
-			<key>CFBundleIdentifier</key>
-			<string></string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string></string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.39330537799-u0blpksbu34kffg2oadk1bescb4793g5</string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>FacebookAppID</key>
 	<string>708107706741764</string>
 	<key>FacebookDisplayName</key>
