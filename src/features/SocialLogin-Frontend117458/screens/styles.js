@@ -156,7 +156,7 @@ export const styles = StyleSheet.create({
 export const buttonStyles = {
   viewStyle: {
     backgroundColor: Color.malibu,
-    borderRadius: 10,
+    borderRadius: 5,
     borderColor: Color.black,
     justifyContent: 'center',
     marginHorizontal: 10,

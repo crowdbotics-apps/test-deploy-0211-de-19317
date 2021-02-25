@@ -18,6 +18,7 @@ import {
 } from '../auth/actions';
 import { styles, buttonStyles, textInputStyles, Color } from './styles';
 import { connect } from 'react-redux';
+import { AppleButton } from '@invertase/react-native-apple-authentication';
 
 // Custom Text Input
 const TextInputField = props => (
@@ -72,13 +73,23 @@ const SocialButtonsView = props => (
       loading={props.loading}
       onPress={props.onGoogleConnect}
     />
-    <Button
+    <AppleButton
+        buttonStyle={AppleButton.Style.WHITE_OUTLINE}
+        buttonType={AppleButton.Type.CONTINUE}
+        style={{
+          height: 40, // You must specify a height
+          marginHorizontal: 10,
+          marginBottom: 5
+        }}
+        onPress={props.onAppleConnect}
+      />
+    {/* <Button
       title="Continue with Apple"
       viewStyle={{ ...styles.socialButton, borderColor: Color.black }}
       textStyle={{ color: Color.black }}
       loading={props.loading}
       onPress={props.onAppleConnect}
-    />
+    /> */}
   </View>
 );
 

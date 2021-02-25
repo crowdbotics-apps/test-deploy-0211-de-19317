@@ -47,16 +47,26 @@ export async function appleForAndroid() {
 }
 
 export async function appleForiOS() {
-  const appleAuthRequestResponse = await appleAuth.performRequest({
-    requestedOperation: appleAuth.Operation.LOGIN,
-    requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
-  });
-  // make response return an id_token to match the android version.
-  const response = {
-    user: newUser,
-    email,
-    nonce,
-    id_token: identityToken,
-  } = appleAuthRequestResponse;
-  return response
+  console.log("Begin signing")
+  try {
+    const appleAuthRequestResponse = await appleAuth.performRequest({
+      requestedOperation: appleAuth.Operation.LOGIN,
+      requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+    });
+    console.log(appleAuthRequestResponse)
+    // make response return an id_token to match the android version.
+    const response = {
+      user: newUser,
+      email,
+      nonce,
+      id_token: identityToken,
+    } = appleAuthRequestResponse;
+    return response
+  } catch (error) {
+    console.log(error.code)
+    if (error && error.code === appleAuth.Error.CANCELED) {
+      throw new Error('The user canceled the signin request.');
+    }
+    throw error;
+  }
 }

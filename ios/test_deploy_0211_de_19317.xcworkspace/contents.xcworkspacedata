@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:test_deploy_0211_de_19317.xcodeproj">
+      location = "container:/Users/administrator/test-deploy-0211-de-19317/ios/test_deploy_0211_de_19317.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
