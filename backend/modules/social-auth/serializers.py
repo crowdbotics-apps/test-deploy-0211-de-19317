@@ -13,7 +13,7 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
     id_token = serializers.CharField(required=False, allow_blank=True)
 
     def _get_request(self):
-        request = self.context.get('request')
+        request = self.context.get("request")
         if not isinstance(request, HttpRequest):
             request = request._request
         return request
@@ -29,24 +29,22 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
             `allauth.socialaccount.SocialLoginView` instance
         """
         request = self._get_request()
-        social_login = adapter.complete_login(
-            request, app, token, response=response)
+        social_login = adapter.complete_login(request, app, token, response=response)
         social_login.token = token
         return social_login
 
     def validate(self, attrs):
-        view = self.context.get('view')
+        view = self.context.get("view")
         request = self._get_request()
 
         if not view:
             raise serializers.ValidationError(
-                'View is not defined, pass it as a context variable'
+                "View is not defined, pass it as a context variable"
             )
 
-        adapter_class = getattr(view, 'adapter_class', None)
+        adapter_class = getattr(view, "adapter_class", None)
         if not adapter_class:
-            raise serializers.ValidationError(
-                'Define adapter_class in view')
+            raise serializers.ValidationError("Define adapter_class in view")
 
         adapter = adapter_class(request)
         app = adapter.get_provider().get_app(request)
@@ -55,25 +53,21 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
         # http://stackoverflow.com/questions/8666316/facebook-oauth-2-0-code-and-token
 
         # Case 1: We received the access_token
-        if attrs.get('access_token'):
-            access_token = attrs.get('access_token')
-            token = {'access_token': access_token}
+        if attrs.get("access_token"):
+            access_token = attrs.get("access_token")
+            token = {"access_token": access_token}
 
         # Case 2: We received the authorization code
-        elif attrs.get('code'):
-            self.callback_url = getattr(view, 'callback_url', None)
-            self.client_class = getattr(view, 'client_class', None)
+        elif attrs.get("code"):
+            self.callback_url = getattr(view, "callback_url", None)
+            self.client_class = getattr(view, "client_class", None)
 
             if not self.callback_url:
-                raise serializers.ValidationError(
-                    'Define callback_url in view'
-                )
+                raise serializers.ValidationError("Define callback_url in view")
             if not self.client_class:
-                raise serializers.ValidationError(
-                    'Define client_class in view'
-                )
+                raise serializers.ValidationError("Define client_class in view")
 
-            code = attrs.get('code')
+            code = attrs.get("code")
 
             provider = adapter.get_provider()
             scope = provider.get_scope(request)
@@ -89,28 +83,30 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
                 cert=app.cert,
             )
             token = client.get_access_token(code)
-            access_token = token['access_token']
+            access_token = token["access_token"]
 
         else:
             raise serializers.ValidationError(
-                'Incorrect input. access_token or code is required.')
+                "Incorrect input. access_token or code is required."
+            )
 
         # Custom changes introduced to handle apple login on allauth
         try:
-            social_token = adapter.parse_token({
-                'access_token': access_token,
-                'id_token': attrs.get('id_token')  # For apple login
-            })
+            social_token = adapter.parse_token(
+                {
+                    "access_token": access_token,
+                    "id_token": attrs.get("id_token"),  # For apple login
+                }
+            )
             social_token.app = app
         except OAuth2Error as err:
             raise serializers.ValidationError(str(err)) from err
 
         try:
-            login = self.get_social_login(
-                adapter, app, social_token, access_token)
+            login = self.get_social_login(adapter, app, social_token, access_token)
             complete_social_login(request, login)
         except HTTPError:
-            raise serializers.ValidationError('Incorrect value')
+            raise serializers.ValidationError("Incorrect value")
 
         if not login.is_existing:
             # We have an account already signed up in a different flow
@@ -128,9 +124,11 @@ class CustomAppleSocialLoginSerializer(SocialLoginSerializer):
             login.lookup()
             login.save(request, connect=True)
 
-        attrs['user'] = login.account.user
+        attrs["user"] = login.account.user
         return attrs
 
 
-class CustomAppleConnectSerializer(SocialConnectMixin, CustomAppleSocialLoginSerializer):
+class CustomAppleConnectSerializer(
+    SocialConnectMixin, CustomAppleSocialLoginSerializer
+):
     pass

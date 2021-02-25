@@ -11,7 +11,8 @@ from django.contrib.sites.models import Site
 try:
     APP_DOMAIN = Site.objects.get(id=1).domain
 except Site.DoesNotExist:
-    APP_DOMAIN = ''
+    APP_DOMAIN = ""
+
 
 class FacebookLogin(SocialLoginView):
     permission_classes = (AllowAny,)
