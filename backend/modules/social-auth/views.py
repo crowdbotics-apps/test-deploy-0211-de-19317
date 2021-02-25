@@ -6,7 +6,12 @@ from allauth.socialaccount.providers.apple.views import AppleOAuth2Adapter
 from allauth.socialaccount.providers.apple.client import AppleOAuth2Client
 from rest_auth.registration.views import SocialLoginView, SocialConnectView
 from .serializers import CustomAppleSocialLoginSerializer, CustomAppleConnectSerializer
+from django.contrib.sites.models import Site
 
+try:
+    APP_DOMAIN = Site.objects.get(id=1).domain
+except Site.DoesNotExist:
+    APP_DOMAIN = ''
 
 class FacebookLogin(SocialLoginView):
     permission_classes = (AllowAny,)
@@ -23,6 +28,7 @@ class AppleLogin(SocialLoginView):
     adapter_class = AppleOAuth2Adapter
     client_class = AppleOAuth2Client
     serializer_class = CustomAppleSocialLoginSerializer
+    callback_url = f"https://{APP_DOMAIN}/accounts/apple/login/callback/"
 
 
 class FacebookConnect(SocialConnectView):

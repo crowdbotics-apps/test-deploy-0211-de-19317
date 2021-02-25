@@ -11,7 +11,7 @@ export async function appleForAndroid() {
   // Configure the request
   appleAuthAndroid.configure({
     // The Service ID you registered with Apple
-    clientId: 'com.crowdbotics.test-deploy-0211-de-19317',
+    clientId: APPLE_SERVICE_ID,
 
     // Return URL added to your Apple dev console. We intercept this redirect, but it must still match
     // the URL you provided to Apple. It can be an empty route on your backend as it's never called.
@@ -32,7 +32,7 @@ export async function appleForAndroid() {
 
   // Open the browser window for user sign in
   try {
-    let response = await appleAuthAndroid.signIn();
+    return await appleAuthAndroid.signIn();
   } catch (error) {
     if (error && error.message) {
       switch (error.message) {

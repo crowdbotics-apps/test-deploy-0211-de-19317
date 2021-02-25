@@ -86,7 +86,7 @@ function* apiFacebookLoginWorker(action) {
       );
     }
   } catch (err) {
-    console.log(JSON.stringify(err));
+    console.log('Facebook Login Failed: ', JSON.stringify(err));
     yield put(actions.apiFacebookLoginFailed(err, action));
   }
 }

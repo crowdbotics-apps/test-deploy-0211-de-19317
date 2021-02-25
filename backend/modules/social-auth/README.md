@@ -92,7 +92,7 @@ f) Click continue. Verify all the input information and if everything is correct
 a) Go to the same page as before, but now choose `Service IDs` option.
 b) Insert your desired description and create an identifier (it could be your bundle ID)
 c) Enable `Signin with apple` and on clicking `Configure`, choose your Primary App ID.
-d) There, you will be asked to select your primary App ID (select the one created earlier). Then, add your app's domain to the `Website Urls` section available. Your domain should be the same that you use to access your web app (as was described before). For this tutorial, we have `social-login-1234.botics.co`. Also add a url that looks like `<your_app_domain_url>/apple/login/callback/`. In the tutorial, we have `https://social-login-1234.botics.co/apple/login/callback/`.
+d) There, you will be asked to select your primary App ID (select the one created earlier). Then, add your app's domain to the `Website Urls` section available. Your domain should be the same that you use to access your web app (as was described before). For this tutorial, we have `social-login-1234.botics.co`. Also add a url that looks like `<your_app_domain_url>/accounts/apple/login/callback/`. In the tutorial, we have `https://social-login-1234.botics.co/accounts/apple/login/callback/`.
 e) Save everything
 f) Verify if information is correct and click Register.
 

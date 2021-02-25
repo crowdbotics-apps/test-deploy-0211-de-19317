@@ -196,7 +196,9 @@ Make sure that you have all the package.json dependencies installed before runni
 In the next step `2. Add your Bundle Identifier`, open your project on xcode.
 > 1. Go to xcode and choose to open a project
 > 2. Open the `<your-Project_name>/ios/<your_project_name>.xcworkspace` file.
-> 3. Click on your project's name on the left side bar and look for `Bundle identifier`. Copy this value and paste in the Facebook configuration field for bundle ID.
+> 3. Click on your project's name on the left side bar and look for `Bundle identifier`. You can update it to something like com.crowdbotics.<your_app_name>. In this tutorial, our app is names social-login-1234, so our identifier would be com.crowdbotics.social-login-1234. You can update this later.
+
+Copy this value and paste in the Facebook configuration field for bundle ID.
 
 Go to the step `4. Configure Your Info.plist` and follow all the instructions.
 
@@ -297,13 +299,57 @@ pod install
 
 
 ## Configuring Apple Signin (Apple Developer account, iOS and Xcode required)
+To be able to user signing with apple feature, it is required that you have access to a developer account with access for creating [certificates, identifiers and keys](https://developer.apple.com/support/certificates/). If you already have a Service Identifier, make sure to update your identifier with `Signin with Apple` capability (point e-g below). If you already completed the backend configuration, you can skip steps 1-3 and just make sure to get access to those values (bundle ID, service ID, Key Secret, etc).
+
+1. First, create a app ID at `https://developer.apple.com/account/resources/certificates/list`. Go to `Identifiers`, click on the `+` sign beside Identifiers or click on this page: [Register new identifier](https://developer.apple.com/account/resources/identifiers/add/bundleId). 
+a) Choose App id and click Continue
+b) Choose App option and continue
+c) Add your apps name in `description` field. Add your bundle ID ([bundle identifier](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids)) that can be found on the XCode page.
+d) Go to Capabilities and enable. 
+e) Click in the edit button, select `Enable as a primary App ID` and save
+f) Click continue. Verify all the input information and if everything is correct, click `Register`
+
+2. Now, register for a Service ID.
+a) Go to the same page as before, but now choose `Service IDs` option.
+b) Insert your desired description and create an identifier (it could be your bundle ID)
+c) Enable `Signin with apple` and on clicking `Configure`, choose your Primary App ID.
+d) There, you will be asked to select your primary App ID (select the one created earlier). Then, add your app's domain to the `Website Urls` section available. Your domain should be the same that you use to access your web app (as was described before). For this tutorial, we have `social-login-1234.botics.co`. Also add a url that looks like `<your_app_domain_url>/accounts/apple/login/callback/`. In the tutorial, we have `https://social-login-1234.botics.co/accounts/apple/login/callback/`.
+e) Save everything
+f) Verify if information is correct and click Register.
+
+3. Now go to `Keys` tab and click on `+` to add a new key (or navigate to [Register a New Key](https://developer.apple.com/account/resources/authkeys/add) page).
+a) Add a name for your key (choose some unique name)
+b) Enable `Signin with Apple` and click in `Configure` button
+c) If asked about domains, insert the same values that you did for Service IDs website urls. 
+d) Save everything and __download the generated certificate__.
+
+4. Open your project on XCode, double-click in the project name in the left tree view. Select your app from the TARGETS section, then choose the `Singin & Capabilities` tab. Enable `Automatically manage singing`. For a more visual explanation, visit the [official library tutorial](https://github.com/invertase/react-native-apple-authentication/blob/master/docs/INITIAL_SETUP.md) with screenshots.
+
+### Apple Signin for Android
+Open your the file `src/features/<your_module_name>/auth/utils.js` and update the following constant values:
+
+```js
+// Add the service ID you just created on Apple. e.g.:
+export const APPLE_SERVICE_ID = 'com.crowdbotics.social-login-1234'
+// Add below the callback url as <your_app_domain_url>/apple/login/callback/. e.g.:
+export const APPLE_REDIRECT_CALLBACK = 'https://social-login-1234.botics.co/accounts/apple/login/callback/'
+```
+
+### Apple Singin for iOS
+If you enabled Signin with Apple on XCode, you are mostly done with Apple signing. Verify if your app is in a iOS version of 13.0 or higher, since this is the version where Apple Singin was introduced. You can do that by both checking your project on XCode in the `General` tab, under `Deployment Info` and searhing across your code for `IPHONEOS_DEPLOYMENT_TARGET`, which should be targeted to 13.0 or higher.
+
+However, there could be a variety of issues facing during iOS deployment. Below you will see a list of helpful links to debug possible deployment issues on iOS. 
 
 
-## iOS and XCode Troubleshooting
+## References and XCode Troubleshooting
 1. Error when building: [FBSDKCoreKit/FBSDKCoreKit.modulemap' not found](https://github.com/facebook/react-native-fbsdk/issues/780#issuecomment-672754083)
 2. [Official docs for Facebook and iOS](https://developers.facebook.com/docs/facebook-login/ios)
 3. [Official docs for Google and iOS](https://developers.google.com/identity/sign-in/ios)
-4. [Official docs for signin with Apple](https://developer.apple.com/sign-in-with-apple/get-started/)
+4. [Official docs for signin with Apple](https://developer.apple.com/documentation/authenticationservices/implementing_user_authentication_with_sign_in_with_apple)
+5. [AutheorizationError error 1000 when testing on iOS simulator](https://github.com/invertase/react-native-apple-authentication/issues/9#issuecomment-614439405)
+6.[Issues with architecture when building on simulator](https://stackoverflow.com/questions/63607158/xcode-12-building-for-ios-simulator-but-linking-in-object-file-built-for-ios)
+7. [React-Native signin with apple library & tutorial](https://github.com/invertase/react-native-apple-authentication/blob/master/docs/INITIAL_SETUP.md)
+8. [iOS Simulator stuck on password input](https://github.com/invertase/react-native-apple-authentication/issues/141)
 
 ## License
 
