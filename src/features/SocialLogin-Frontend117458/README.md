@@ -12,7 +12,7 @@ When you are finished with the setup, do not forget to commit all changed and cr
 ```js
 "dependencies": {
  "@react-native-community/google-signin": "^5.0.0",
- "react-native-fbsdk": "^3.0.0",
+ "react-native-fbsdk": "1.1.2",
  "@invertase/react-native-apple-authentication": "^2.1.0"
 }
 ```
