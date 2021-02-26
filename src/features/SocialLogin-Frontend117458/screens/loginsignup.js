@@ -26,7 +26,7 @@ import {
 } from '@invertase/react-native-apple-authentication';
 
 // Custom Text Input
-const TextInputField = props => (
+export const TextInputField = props => (
   <View>
     <Text style={[textInputStyles.label, props.labelStyle]}>{props.label}</Text>
     <TextInput
@@ -41,7 +41,7 @@ const TextInputField = props => (
 );
 
 // Custom Button
-const Button = props => (
+export const Button = props => (
   <TouchableOpacity onPress={props.onPress} disabled={props.loading}>
     <View style={[buttonStyles.viewStyle, props.viewStyle]}>
       {props.loading ? (

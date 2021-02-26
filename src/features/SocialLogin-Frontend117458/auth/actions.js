@@ -65,11 +65,11 @@ export const apiAuthUserRequest = token => ({
   token,
 });
 export const apiAuthUserSuccess = response => ({
-  type: types.API_AUTH_USER_FAILED,
+  type: types.API_AUTH_USER_SUCCESS,
   response,
 });
 export const apiAuthUserFailed = response => ({
-  type: types.API_AUTH_USER_SUCCESS,
+  type: types.API_AUTH_USER_FAILED,
   response,
 });
 

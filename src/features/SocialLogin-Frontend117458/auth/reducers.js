@@ -67,7 +67,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         },
       });
 
-    case types.API_SIGNOUT_REQUEST:
+    case types.API_LOGOUT_REQUEST:
       return Object.assign({}, state, {
         api: {
           isLoading: true,
@@ -76,7 +76,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         },
         token: null,
       });
-    case types.API_SIGNOUT_SUCCESS:
+    case types.API_LOGOUT_SUCCESS:
       return Object.assign({}, INITIAL_STATE, {
         api: {
           isLoading: false,
@@ -85,7 +85,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         },
         user: {},
       });
-    case types.API_SIGNOUT_FAILED:
+    case types.API_LOGOUT_FAILED:
       return Object.assign({}, state, {
         api: {
           isLoading: false,
@@ -126,7 +126,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
           isLoading: true,
           error: null,
           success: false,
-        },
+        }
       });
     case types.API_AUTH_USER_SUCCESS:
       return Object.assign({}, state, {
@@ -135,7 +135,7 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
           error: null,
           success: true,
         },
-        user: action.respose?.data,
+        user: action.response?.data,
       });
     case types.API_AUTH_USER_FAILED:
       return Object.assign({}, state, {

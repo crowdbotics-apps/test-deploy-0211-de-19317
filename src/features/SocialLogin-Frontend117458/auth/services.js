@@ -31,7 +31,7 @@ function apiLogoutRequest(action) {
 }
 
 function apiAuthUserRequest(action) {
-  return socialLoginAPI.post(`/rest-auth/user/`, null, {
+  return socialLoginAPI.get(`/rest-auth/user/`, null, {
     headers: { Authorization: `Token ${action.token}` },
   });
 }
