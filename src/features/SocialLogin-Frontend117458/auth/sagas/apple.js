@@ -60,10 +60,10 @@ export async function appleForiOS() {
       email,
       nonce,
       id_token: identityToken,
+      code: authorizationCode,
     } = appleAuthRequestResponse;
     return response
   } catch (error) {
-    console.log(error.code)
     if (error && error.code === appleAuth.Error.CANCELED) {
       throw new Error('The user canceled the signin request.');
     }

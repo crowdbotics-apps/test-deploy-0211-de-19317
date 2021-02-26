@@ -27,9 +27,6 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 26,
     alignItems: 'center',
   },
-  socialButton: {
-    borderWidth: 1, backgroundColor: 'transparent', fontSize: 5
-  },
   input: {
     backgroundColor: 'white',
     //marginLeft: scale(10), marginRight: scale(10),

@@ -2,13 +2,15 @@ import { createStackNavigator } from "react-navigation-stack";
 
 import LoginSignup from "./screens";
 import PasswordReset from "./screens/reset";
+import UserDemo from "./screens/redirect-demo";
 
 export default LoginSignupBlueprintNavigator = createStackNavigator(
   {
     LoginSignup: {
-      screen: LoginSignup.screen
+      screen: LoginSignup.navigator
     },
-    PasswordReset
+    PasswordReset,
+    UserDemo,
   },
   {
     initialRouteName: "LoginSignup",

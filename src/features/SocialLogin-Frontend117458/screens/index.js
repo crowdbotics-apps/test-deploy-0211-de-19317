@@ -13,6 +13,7 @@ import {
   apiSignupRequest,
   apiFacebookLogin,
   apiGoogleLogin,
+  apiAppleLogin,
 } from '../auth/actions';
 import reducer from '../auth/reducers';
 import { styles } from './styles';
@@ -124,12 +125,15 @@ const SocialLoginSignup = createAppContainer(
 
 export default {
   name: 'socialLogin',
-  screen: SocialLoginSignup,
-  reducer: reducer,
-  actions: [
-    apiLoginRequest,
-    apiSignupRequest,
-    apiFacebookLogin,
-    apiGoogleLogin,
-  ],
+  navigator: SocialLoginSignup,
+  slice: {
+    reducer,
+    actions: [
+      apiLoginRequest,
+      apiSignupRequest,
+      apiFacebookLogin,
+      apiGoogleLogin,
+      apiAppleLogin,
+    ],
+  }
 };

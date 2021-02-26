@@ -64,6 +64,20 @@ function* apiPasswordResetWatcher() {
   yield takeEvery(types.API_PASSWORD_RESET_REQUEST, apiPasswordResetWorker);
 }
 
+// Get auth user
+function* apiAuthUserWorker(action) {
+  try {
+    const result = yield call(authServices.apiAuthUserRequest, action);
+    yield put(actions.apiAuthUserSuccess(result, action));
+  } catch (err) {
+    yield put(actions.apiAuthUserFailed(err, action));
+  }
+}
+
+function* apiAuthUserWatcher() {
+  yield takeEvery(types.API_AUTH_USER_REQUEST, apiAuthUserWorker);
+}
+
 // Facebook
 function* apiFacebookLoginWorker(action) {
   try {
@@ -132,9 +146,9 @@ function* apiAppleLoginWorker(action) {
       android: appleForAndroid
     })
     const response = yield signinFunction();
-    console.log(response)
     const result = yield call(authServices.apiAppleLogin, {
-      access_token: response.id_token,
+      id_token: response.id_token,
+      access_token: response.code,
     });
     yield put(actions.apiAppleLoginSuccess(result, action));
   } catch (err) {
@@ -155,6 +169,7 @@ export default function* authRootSaga() {
     apiLogoutRequestWatcher,
     apiSignupRequestWatcher,
     apiPasswordResetWatcher,
+    apiAuthUserWatcher,
     apiFacebookLoginWatcher,
     apiGoogleLoginWatcher,
     apiAppleLoginWatcher

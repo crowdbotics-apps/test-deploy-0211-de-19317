@@ -120,6 +120,32 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         },
       });
 
+    case types.API_AUTH_USER_REQUEST:
+      return Object.assign({}, state, {
+        api: {
+          isLoading: true,
+          error: null,
+          success: false,
+        },
+      });
+    case types.API_AUTH_USER_SUCCESS:
+      return Object.assign({}, state, {
+        api: {
+          isLoading: false,
+          error: null,
+          success: true,
+        },
+        user: action.respose?.data,
+      });
+    case types.API_AUTH_USER_FAILED:
+      return Object.assign({}, state, {
+        api: {
+          isLoading: false,
+          error: mapErrorMessage(action),
+          success: false,
+        },
+      });
+
     case types.API_FACEBOOK_LOGIN:
       return Object.assign({}, state, {
         api: {
@@ -130,7 +156,6 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         token: null,
       });
     case types.API_FACEBOOK_LOGIN_SUCCESS:
-      console.log(state);
       return Object.assign({}, state, {
         api: {
           isLoading: false,
@@ -187,7 +212,6 @@ export default function authApiReducer(state = INITIAL_STATE, action) {
         token: null,
       });
     case types.API_APPLE_LOGIN_SUCCESS:
-      console.log(state);
       return Object.assign({}, state, {
         api: {
           isLoading: false,

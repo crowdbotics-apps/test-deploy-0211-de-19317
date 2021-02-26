@@ -7,6 +7,7 @@ import {
   TextInput,
   ActivityIndicator,
   Alert,
+  Platform,
 } from 'react-native';
 import { HOME_SCREEN_NAME, validateEmail } from './constants.js';
 import {
@@ -14,10 +15,15 @@ import {
   apiSignupRequest,
   apiFacebookLogin,
   apiGoogleLogin,
-  apiAppleLogin
+  apiAppleLogin,
 } from '../auth/actions';
-import { styles, buttonStyles, textInputStyles, Color } from './styles';
+import { buttonStyles, textInputStyles, Color } from './styles';
 import { connect } from 'react-redux';
+import { GoogleSigninButton } from '@react-native-community/google-signin';
+import {
+  AppleButton,
+  appleAuthAndroid,
+} from '@invertase/react-native-apple-authentication';
 
 // Custom Text Input
 const TextInputField = props => (
@@ -55,30 +61,41 @@ const Button = props => (
 // Grouped Social Buttons View
 const SocialButtonsView = props => (
   <View>
+    <Text style={{ textAlign: 'center', width: '100%', marginVertical: 5 }}>
+      - or -
+    </Text>
     <Button
-      title="Continue with Facebook"
+      title="Signin with Facebook"
       viewStyle={{
-        ...styles.socialButton,
+        backgroundColor: Color.facebook,
         borderColor: Color.facebook,
+        marginHorizontal: 5,
+        marginBottom: 2,
       }}
-      textStyle={{ color: Color.facebook }}
+      textStyle={{ color: Color.white, fontFamily: 'Roboto-mono' }}
       loading={props.loading}
       onPress={props.onFacebookConnect}
     />
-    <Button
-      title="Continue with Google"
-      viewStyle={{ ...styles.socialButton, borderColor: Color.google }}
-      textStyle={{ color: Color.google }}
-      loading={props.loading}
+    <GoogleSigninButton
       onPress={props.onGoogleConnect}
+      size={GoogleSigninButton.Size.Wide}
+      color={GoogleSigninButton.Color.Dark}
+      disabled={props.loading}
+      style={{ width: '99%', height: 48, marginHorizontal: 2 }}
     />
-    <Button
-      title="Continue with Apple"
-      viewStyle={{ ...styles.socialButton, borderColor: Color.black }}
-      textStyle={{ color: Color.black }}
-      loading={props.loading}
-      onPress={props.onAppleConnect}
-    />
+    {(Platform.OS === 'ios' || appleAuthAndroid.isSupported) && (
+      <AppleButton
+        onPress={props.onAppleConnect}
+        buttonStyle={AppleButton.Style.WHITE_OUTLINE}
+        buttonType={AppleButton.Type.SIGN_IN}
+        style={{
+          width: '97%', // You must specify a width
+          height: 44, // You must specify a height
+          marginHorizontal: 5,
+          marginTop: 2,
+        }}
+      />
+    )}
   </View>
 );
 
@@ -314,5 +331,11 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export const SignIn = connect(mapStateToProps, mapDispatchToProps)(SignInComponent);
-export const SignUp = connect(mapStateToProps, mapDispatchToProps)(SignUpComponent);
+export const SignIn = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SignInComponent);
+export const SignUp = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SignUpComponent);

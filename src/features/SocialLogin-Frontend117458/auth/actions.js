@@ -59,6 +59,20 @@ export const apiPasswordResetFailed = response => ({
   response,
 });
 
+// GET AUTH USER
+export const apiAuthUserRequest = token => ({
+  type: types.API_AUTH_USER_REQUEST,
+  token,
+});
+export const apiAuthUserSuccess = response => ({
+  type: types.API_AUTH_USER_FAILED,
+  response,
+});
+export const apiAuthUserFailed = response => ({
+  type: types.API_AUTH_USER_SUCCESS,
+  response,
+});
+
 // FACEBOOK Connect data: {access_token: ''}
 export const apiFacebookLogin = data => ({
   type: types.API_FACEBOOK_LOGIN,
