@@ -7,24 +7,27 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { BACKGROUND_URL, LOGO_URL } from './constants.js';
+import { BACKGROUND_URL, LOGO_URL } from './screens/constants.js';
 import {
   apiLoginRequest,
   apiSignupRequest,
   apiFacebookLogin,
   apiGoogleLogin,
   apiAppleLogin,
-} from '../auth/actions';
-import reducer from '../auth/reducers';
-import { styles } from './styles';
+} from './auth/actions';
+import reducer from './auth/reducers';
+import { styles } from './screens/styles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
   createNavigator,
   createAppContainer,
   TabRouter,
 } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-import { SignIn, SignUp } from './loginsignup';
+import { SignIn, SignUp } from './screens/loginsignup';
+import PasswordReset from './screens/reset';
+import UserDemo from './screens/redirect-demo';
 
 // Tabs
 const LoginTabBar = ({ navigation }) => {
@@ -69,7 +72,7 @@ const SocialLoginSignupView = ({ navigation }) => {
                 justifyContent: 'center',
                 resizeMode: 'cover',
                 height: '100%',
-                width: '100%'
+                width: '100%',
               }}>
               <Image
                 source={{
@@ -123,9 +126,23 @@ const SocialLoginSignup = createAppContainer(
   createNavigator(SocialLoginSignupView, LoginSignupRouter, {}),
 );
 
+export const SocialLoginNavigator = createStackNavigator(
+  {
+    LoginSignup: {
+      screen: SocialLoginSignup,
+    },
+    PasswordReset,
+    UserDemo,
+  },
+  {
+    initialRouteName: 'LoginSignup',
+    defaultNavigationOptions: ({ navigation }) => ({ header: null }),
+  },
+);
+
 export default {
   name: 'socialLogin',
-  navigator: SocialLoginSignup,
+  navigator: SocialLoginNavigator,
   slice: {
     reducer,
     actions: [
@@ -135,5 +152,5 @@ export default {
       apiGoogleLogin,
       apiAppleLogin,
     ],
-  }
+  },
 };
