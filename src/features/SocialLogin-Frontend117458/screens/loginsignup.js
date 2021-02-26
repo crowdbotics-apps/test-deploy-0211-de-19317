@@ -72,7 +72,7 @@ const SocialButtonsView = props => (
         marginHorizontal: 5,
         marginBottom: 2,
       }}
-      textStyle={{ color: Color.white, fontFamily: 'Roboto-mono' }}
+      textStyle={{ color: Color.white }}
       loading={props.loading}
       onPress={props.onFacebookConnect}
     />

@@ -32,7 +32,7 @@ const UserDemo = props => {
 function mapStateToProps(state) {
   return {
     api: state.socialLogin.api,
-    user: state.socialLogin.user,
+    user: state.socialLogin.user || [],
     token: state.socialLogin.token,
   };
 }
